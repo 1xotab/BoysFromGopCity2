@@ -1,21 +1,21 @@
 services:
   postgres:
-    container_name: postgres_container_gop
     image: postgres
+    container_name: postgres_container
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-      PGDATA: /data/postgres
+      - "POSTGRES_USER=nine"
+      - "POSTGRES_PASSWORD=999"
+      - "PGDATA: /data/postgres"
     volumes:
-      - postgres:/data/postgres
+      - postgres:/data/postgres/
     ports:
-      - "5432:5432"
+      - "15432:5432"
     networks:
       - postgres
-    restart: unless-stopped
+    restart: always
 
   pgadmin:
-    container_name: pgadmin_container_gop
+    container_name: pgadmin_container
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
@@ -34,7 +34,7 @@ networks:
     driver: bridge
   spring:
     driver: bridge
-
+    
 volumes:
   postgres:
   pgadmin:
