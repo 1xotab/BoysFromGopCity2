@@ -30,6 +30,7 @@ public class MainController {
 
     @GetMapping(path = "test")
     public String test() {
+
         return "1337";
     }
 
