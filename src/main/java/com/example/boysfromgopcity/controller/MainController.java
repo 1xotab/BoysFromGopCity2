@@ -27,4 +27,11 @@ public class MainController {
     public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
+
+    @GetMapping(path = "test")
+    public String test() {
+        return "1337";
+    }
+
+
 }
