@@ -1,0 +1,32 @@
+server:
+  port: 8081
+
+#management:
+#  server:
+#    port: 8191
+#  endpoint:
+#    shutdown:
+#      enabled: true
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:15432/postgres
+    username: nine
+    password: '999'
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  rabbitmq:
+    addresses: amqps://b-af42f1c0-8412-4af7-8764-b3c048d7796e.mq.eu-north-1.amazonaws.com:5671
+    template:
+      exchange: internal.exchange
+      default-receive-queue: notification.queue
+      routing-key: internal.notification.routing-key
+    username: xotab
+    password: passwordik12

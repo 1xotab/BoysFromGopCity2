@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres
-    container_name: postgres_container
+    container_name: postgres_container_gop
     environment:
       - "POSTGRES_USER=nine"
       - "POSTGRES_PASSWORD=999"
@@ -15,7 +15,7 @@ services:
     restart: always
 
   pgadmin:
-    container_name: pgadmin_container
+    container_name: pgadmin_container_gop
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
