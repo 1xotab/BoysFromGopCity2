@@ -1,6 +1,8 @@
 package com.example.boysfromgopcity.controller;
 
+import com.example.boysfromgopcity.config.NotificationConfig;
 import com.example.boysfromgopcity.entity.Customer;
+import com.example.boysfromgopcity.rabbit.RabbitMQMessageProducer;
 import com.example.boysfromgopcity.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +18,16 @@ import java.util.List;
 public class MainController {
 
     private final CustomerService customerService;
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
+    private final NotificationConfig notificationConfig;
 
     @GetMapping(path = "hello")
     public String sayHello() {
+
+        rabbitMQMessageProducer.publish("Payload",
+                notificationConfig.getInternalExchange(),
+                notificationConfig.getInternalNotificationRoutingKey()
+        );
 
         return "Hello world!";
     }
@@ -30,9 +39,6 @@ public class MainController {
 
     @GetMapping(path = "test")
     public String test() {
-
         return "1337";
     }
-
-
 }
